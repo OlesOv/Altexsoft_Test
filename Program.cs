@@ -26,13 +26,22 @@ namespace Altexsoft_Test
             var input = Console.ReadLine();
             while (input != "q")
             {
-                if (isLucky(input))
+                try
                 {
-                    Console.WriteLine("This ticket number is lucky\n");
+                    if (input.Length < 4 || input.Length > 8) throw new FormatException();
+                    Int32.Parse(input);
+                    if (isLucky(input))
+                    {
+                        Console.WriteLine("This ticket number is lucky\n");
+                    }
+                    else
+                    {
+                        Console.WriteLine("This ticket number is not lucky\n");
+                    }
                 }
-                else
+                catch (FormatException)
                 {
-                    Console.WriteLine("This ticket number is not lucky\n");
+                    Console.WriteLine("Wrong format\n");
                 }
                 Console.Write("Enter q for exit.\nOr enter a ticket number: ");
                 input = Console.ReadLine();
